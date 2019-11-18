@@ -23,11 +23,19 @@ export const App = () => {
         }))
     }
 
+    const handleDelete = () => {
+        setOptions(options.filter((option, index) => {
+            return index != selectedIndex
+        }))
+        setSelectedIndex(selectedIndex - 1 < 0 ? 0 : selectedIndex - 1)
+    }
+
     return <EditableSelect
         options={options}
         selectedIndex={selectedIndex}
         onSelect={setSelectedIndex}
         onChange={handleChange}
+        onDelete={handleDelete}
     />
 }
 

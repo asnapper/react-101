@@ -5,6 +5,7 @@ export interface EditableSelectProps {
     selectedIndex: number
     onSelect: (selectedIndex: number) => void
     onChange: (value: string) => void
+    onDelete: () => void
 }
 
 export const EditableSelect = (props: EditableSelectProps) => {
@@ -13,6 +14,7 @@ export const EditableSelect = (props: EditableSelectProps) => {
     const handleSelect = (event) => props.onSelect(event.target.selectedIndex) // index change always calls parent comp method
     const handleChange = (event) => setSelectedValue(event.target.value) // track current edit state locally
     const handleSave = () => props.onChange(selectedValue) // parent handler only called on explicit save
+    const handleDelete = () => props.onDelete() // parent handler only called on explicit save
     
     // reset edit state if options or selected index change
     React.useEffect(() => {
@@ -29,6 +31,7 @@ export const EditableSelect = (props: EditableSelectProps) => {
         </select>
         <input type="text" value={selectedValue} onChange={handleChange} />
         <button onClick={handleSave}>save</button>
+        <button onClick={handleDelete}>delete</button>
     </>
 }
 
